@@ -1,6 +1,6 @@
 <?php
 # Se connecter à la BD
-require_once('../connexion/connexion-Temp.php');
+include_once('../connexion/connexion.php');
 # Selection Querries
 require_once("../models/select/select-Terrain.php");
 
@@ -134,7 +134,7 @@ require_once("../models/select/select-Terrain.php");
                                             <input type="submit" name="valider" class="btn btn-dark w-100" value="Modifier">
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 mt-4 col-sm-6 p-3 ">
-                                            <a href="client.php" class="btn btn-danger w-100">Annuler</a>
+                                            <a href="terrain.php" class="btn btn-danger w-100">Annuler</a>
                                         </div>
                                     </div>
                                 <?php
