@@ -12,64 +12,80 @@ if (isset($_GET['Admin'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion | Eka_Consulting</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Icônes Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<style>
-    body {
-        min-height: 100vh;
-    }
-</style>
-<?php require_once('views/style.php') ?>
 
-<body class="d-flex justify-content-center align-items-center px-3">
-    <div class="fixed-top container text-center pt-4">
-        <span></span>
-    </div>
-    <form method="POST" action="models/login.php" class="col-xl-4 col-lg-5 col-sm-7 col-md-6 card p-4">
-        <div class="row">
-            <div class="col-10">
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 font-sans">
 
-            </div>
-            <div class="col-2">
-                <a href="index.php"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a>
-            </div>
-        </div>
-        <h5 class="title text-center">Connexion</h5>
-        <div class="row">
-            <div class="col-12 mb-3">
-                <label for="">Adresse e-mail</label>
-                <input type="text" class="form-control" placeholder="Ex: example@Eka.com" name="username">
-            </div>
-            <div class="col-12 mb-3">
-                <label for="">Mot de passe</label>
-                <input type="password" class="form-control" placeholder="Ex: *****" name="password">
-            </div>
-            <?php
-            if (isset($_SESSION['msg']) && !empty($_SESSION['msg'])) { ?>
-                <div class="col-xl-12 mt-3">
-                    <div class="alert-info alert text-center"><?= $_SESSION['msg'] ?></div>
-                </div>
-            <?php }
-            #Cette ligne permet de vider la valeur qui se trouve dans la session message
-            unset($_SESSION['msg']);
-            ?>
-            <div class="col-12 mb-3">
-                <input type="submit" class="form-control btn-dark btn" name="connect" value="Se connecter">
-            </div>
-            <div class="col-12 mb-3 d-flex justify-content-between">
-                <label><input type="checkbox" class="form-check-input"> Se souvenir de moi </label>
-                <!-- <a href="">Mot de passe oublé ?</a> -->
-            </div>
-        </div>
-    </form>
-    <div class="fixed-bottom container text-center pb-4">
-        <span>Droit réservé</span>
+  <!-- Formulaire de connexion -->
+  <form method="POST" action="models/login.php"
+    class="bg-white shadow-xl rounded-lg w-full max-w-md p-8 relative transition-transform transform hover:scale-105 duration-300">
+
+    <!-- Bouton retour -->
+    <a href="index.php" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition">
+      <i class="bi bi-x-circle text-2xl"></i>
+    </a>
+
+    <!-- Logo -->
+    <div class="flex justify-center mb-4">
+      <img src="assets/img/logo/EKA_logo.png" alt="EKA Logo" class="h-20 w-auto object-contain transition-transform transform hover:scale-110 duration-300">
     </div>
+
+    <!-- Titre -->
+    <h2 class="text-3xl font-semibold text-center text-blue-700 mb-6">Connexion</h2>
+
+    <!-- Email -->
+    <div class="mb-4">
+      <label class="block text-gray-600 mb-2">Adresse e-mail</label>
+      <input type="text" name="username" placeholder="exemple@eka.com"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none transition duration-200 ease-in-out">
+    </div>
+
+    <!-- Mot de passe -->
+    <div class="mb-4">
+      <label class="block text-gray-600 mb-2">Mot de passe</label>
+      <input type="password" name="password" placeholder="•••••••"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none transition duration-200 ease-in-out">
+    </div>
+
+    <!-- Message d'erreur -->
+    <?php if (isset($_SESSION['msg']) && !empty($_SESSION['msg'])) { ?>
+      <div class="mb-4 p-3 rounded-lg bg-red-100 text-red-700 text-center">
+        <?= $_SESSION['msg'] ?>
+      </div>
+    <?php }
+    unset($_SESSION['msg']); ?>
+
+    <!-- Bouton -->
+    <div class="mb-4">
+      <input type="submit" name="connect" value="Se connecter"
+        class="w-full bg-blue-700 text-white py-3 rounded-lg hover:bg-orange-500 transition duration-200 ease-in-out">
+    </div>
+
+    <!-- Options -->
+    <div class="flex items-center justify-between text-sm text-gray-600">
+      <label class="flex items-center gap-2">
+        <input type="checkbox" class="w-4 h-4 border rounded focus:ring-2 focus:ring-orange-500"> Se souvenir de moi
+      </label>
+      <!-- <a href="#" class="text-blue-600 hover:underline">Mot de passe oublié ?</a> -->
+    </div>
+  </form>
+
+  <!-- Footer -->
+  <div class="absolute bottom-4 text-center text-gray-500 text-sm">
+    &copy; <?= date("Y") ?> Eka_Consulting — Tous droits réservés
+  </div>
+
 </body>
 
 </html>

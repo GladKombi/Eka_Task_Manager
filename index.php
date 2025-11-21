@@ -1,78 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Eka_Consulting</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-    <style>
-        .fonction a {
-            text-decoration: none;           
-        }
-        .fonction {
-            color: blue;
-        }
-        .fonction:hover {
-            text-decoration: none;
-            background-color: orange;
-            transition: 0.5s ease-out;
-        }
-    </style>
-    <?php require_once('views/style.php') ?>
+  <title>Eka_Consulting</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
 
-<body>
+<body class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen flex items-center justify-center font-sans">
 
+  <main class="w-full max-w-4xl p-6">
+    <div class="bg-white shadow-2xl rounded-2xl p-8">
+      <!-- Titre -->
+      <h1 class="text-center text-2xl md:text-3xl font-bold text-blue-700 mb-6">
+        Bienvenue sur l'application de <span class="text-orange-500">Eka_Consulting</span>
+      </h1>
 
-    <main class="main d-flex justify-content-center align-items-center" id="main" style="min-height: 80vh;">
-        <div class="row">
-            <div class="col-lg-12 card shadow">
-                <h4 class="text-center">Bienvue sur l'application de Eka_Consulting </h4>
-                <div class="row text-center">
-                    <div class="col-lg-2">
+      <!-- Logo -->
+      <div class="flex justify-center mb-6">
+        <img src="assets/img/logo/EKA_logo.png" alt="EKA Logo" class="h-32 object-contain">
+      </div>
 
-                    </div>
-                    <div class="col-lg-8">
-                        <img src="assets/img/logo/EKA_logo.png" alt="" height="140px">
-                    </div>
-                    <div class="col-lg-2">
+      <!-- Choix des fonctions -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <a href="login.php?Admin"
+          class="group bg-blue-50 hover:bg-orange-500 text-blue-700 hover:text-white rounded-xl shadow-md p-6 flex flex-col items-center transition-all duration-300">
+          <i class="bi bi-person-circle text-4xl mb-3 group-hover:scale-110 transform transition"></i>
+          <h3 class="text-lg font-semibold">Admin</h3>
+        </a>
 
-                    </div>
+        <a href="login.php?ceo"
+          class="group bg-blue-50 hover:bg-orange-500 text-blue-700 hover:text-white rounded-xl shadow-md p-6 flex flex-col items-center transition-all duration-300">
+          <i class="bi bi-briefcase-fill text-4xl mb-3 group-hover:scale-110 transform transition"></i>
+          <h3 class="text-lg font-semibold">CEO</h3>
+        </a>
 
-                </div>
-                <div class="row m-2 ">
-                    <div class="col-lg-4 card fonction p-2">
-                        <a href="login.php?Admin">
-                            <h3 class="text-center bi bi-person"></h3>
-                            <h4 class="text-center">Admin</h4>
-                        </a>
-                    </div>
+        <a href="login.php?Agent"
+          class="group bg-blue-50 hover:bg-orange-500 text-blue-700 hover:text-white rounded-xl shadow-md p-6 flex flex-col items-center transition-all duration-300">
+          <i class="bi bi-people-fill text-4xl mb-3 group-hover:scale-110 transform transition"></i>
+          <h3 class="text-lg font-semibold">Agents</h3>
+        </a>
+      </div>
 
-                    <div class="col-lg-3 m-2 card fonction p-2">
-                        <a href="login.php?ceo">
-                            <h3 class="text-center bi bi-person"></h3>
-                            <h4 class="text-center">CEO</h4>
-                        </a>
-                    </div>
+      <!-- Note explicative -->
+      <p class="text-center text-gray-600">
+        Avant d’accéder au système, veuillez <span class="font-semibold text-blue-700">spécifier votre fonction</span>.
+        <br>
+        Cela nous permettra de vous identifier correctement.
+      </p>
+    </div>
+  </main>
 
-                    <div class="col-lg-4 card fonction p-2">
-                        <a href="login.php?Agent">
-                            <h3 class="text-center bi bi-person"></h3>
-                            <h4 class="text-center">Agents</h4>
-                        </a>
-                    </div>
-                </div>
-                <p class="text-center">
-                    Avant d'acceder au systeme veillez specifier ici votre fonction. <br> celà nous permettra de vous
-                    identifier.
-                </p>
-            </div>
-        </div>
-    </main>
 </body>
-
 </html>

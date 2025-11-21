@@ -1,6 +1,6 @@
 <?php
 # Se connecter à la BD
-require_once('../connexion/connexion-Temp.php');
+include_once('../connexion/connexion.php');
 # Selection Querries
 require_once("../models/select/select-participation.php");
 
@@ -100,11 +100,8 @@ require_once("../models/select/select-participation.php");
                                 <td><?= $partication["lieu"] ?></td>
                                 <td><?= $partication["Denomination"] ?></td>
                                 <td>
-                                    <a href="participation.php?idParticipation=<?= $partication["id"] ?>" class="btn btn-dark btn-sm">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/deleteClient.php?idclient=" class="btn btn-danger btn-sm">
-                                        <i class="bi bi-trash3-fill"></i>
+                                    <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')" href="../models/delete/deleteParticipation.php?id=<?= $partication["id"] ?>&&ter=<?= $id?>" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-trash3-fill"></i> Retirer
                                     </a>
                                 </td>
                             </tr>
