@@ -1,4 +1,6 @@
 <?php
+$idTerrain = $_GET['idTerrain'] ?? null;
+
 if (isset($_GET["idProd"]) && !empty($_GET["idTerrain"])) {
     $idProduction = $_GET["idProd"];
     $idTerrain = $_GET["idTerrain"];
@@ -40,9 +42,11 @@ $getDisk = $connexion->prepare("SELECT * FROM `disk` WHERE disk.statut=?;");
 $getDisk->execute([$statut]);
 
 # Selection Des données des agents qui ont participer au terrain
-$getAgent = $connexion->prepare("SELECT `participation`.*, agents.nom,agents.postnom, agents.prenom,departement.denomination FROM `agents`, `departement`, `participation`, `terrain` WHERE agents.fonction=departement.id AND participation.agent=agents.id AND participation.terrain=terrain.id AND terrain.id=? AND participation.statut=? ;");
-$getAgent->execute([$idTerrain, $statut]);
+if (!empty($idTerrain)) {
+    $getAgent = $connexion->prepare("SELECT `participation`.*, agents.nom,agents.postnom, agents.prenom,departement.denomination FROM `agents`, `departement`, `participation`, `terrain` WHERE agents.fonction=departement.id AND participation.agent=agents.id AND participation.terrain=terrain.id AND terrain.id=? AND participation.statut=? ;");
+    $getAgent->execute([$idTerrain, $statut]);
+}
 
 # Selection des terrains
-$getTerrain = $connexion->prepare("SELECT `terrain`.*, partenaire.Denomination FROM `terrain`,`partenaire` WHERE terrain.partenaire=partenaire.id AND terrain.statut=? AND terrain.Etat=? ORDER BY `terrain`.`id` DESC;");
-$getTerrain->execute([$statut, $Etat]);
+$getTerrain = $connexion->prepare("SELECT `terrain`.*, partenaire.Denomination FROM `terrain`,`partenaire` WHERE terrain.partenaire=partenaire.id AND terrain.statut=? ORDER BY `terrain`.`id` DESC;");
+$getTerrain->execute([$statut]);
