@@ -20,13 +20,11 @@ if (isset($_POST['valider'])) {
   $destination = "../../assets/img/profiles/";
   // fonction permettant de recuperer la photo
   $newimage = RecuperPhoto($fichier_tmp, $nom_original, $destination);
-  /**
-   *  “Here, we have hashed the password. So, for a new user, you first need to create a file that will allow you to hash the password in order to log in. Please create this file outside of this ‘Eka_task_manager’ project.”
-   * for example
-   * $pwd=1234;
-   * $hash = password_hash($pwd, PASSWORD_DEFAULT);
-   * print $hash;
-   */
+  if ($newimage === false) {
+    $_SESSION['msg'] = "Impossible d'uploader la photo. Veuillez réessayer.";
+    header("location:../../views/agent.php");
+    exit;
+  }
 
   // password hashing
   $passwordh = $pwd;
