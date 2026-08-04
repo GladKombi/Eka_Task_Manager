@@ -19,17 +19,27 @@ function RecuperPhoto($fichier_tmp, $nom_original, $destination)
 
     // Vérification de l'extension
     if (in_array($extension, $extensions_autorisees)) {
-        // Nouveau nom de fichier (pour éviter les doublons)
+            // Nouveau nom de fichier (pour éviter les doublons)
         $nouveau_nom = uniqid("Eka_") . '.' . $extension;
 
+        // Crée le dossier de destination si nécessaire
+        if (!is_dir($destination) && !mkdir($destination, 0755, true)) {
+            return false;
+        }
+
         // Chemin complet du fichier de destination
-        $chemin = $destination . $nouveau_nom;
+        $chemin = rtrim($destination, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $nouveau_nom;
+
+        // Vérifie que le fichier temporaire existe et peut être déplacé
+        if (!is_uploaded_file($fichier_tmp)) {
+            return false;
+        }
 
         // Déplacement du fichier temporaire vers le dossier de destination
         if (move_uploaded_file($fichier_tmp, $chemin)) {
             return $nouveau_nom;
         } else {
-            echo "Une erreur s'est produite lors du téléchargement.";
+            return false;
         }
     } else {
         echo "Seuls les fichiers JPG, JPEG, PNG et GIF sont autorisés.";
