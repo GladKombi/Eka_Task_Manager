@@ -25,7 +25,9 @@ if($TotalHomme<1){
     $TotalHomme=0;
 }
 $PourcenHome=0;
-$PourcenHome=$TotalHomme/$TotalAgent*100;
+if ($TotalAgent > 0) {
+    $PourcenHome = ($TotalHomme / $TotalAgent) * 100;
+}
 
 # Selection des agent Femme
 $GenreFem="Feminin";
@@ -37,7 +39,9 @@ if($TotalFemme<1){
     $TotalFemme=0;
 }
 $PourcenFeme=0;
-$PourcenFeme=$TotalFemme/$TotalAgent*100;
+if ($TotalAgent > 0) {
+    $PourcenFeme = ($TotalFemme / $TotalAgent) * 100;
+}
 
 # Selection des Disk Dispo
 $getDisk = $connexion->prepare("SELECT COUNT(*) AS TotalDisk FROM disk WHERE statut=?");

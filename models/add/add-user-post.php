@@ -33,9 +33,10 @@ if (isset($_POST['valider'])) {
           $mail = "Admin$prenom@Eka.com";
         }
 
+        $passwordhacher = password_hash($pwd, PASSWORD_DEFAULT);
         # Insertion data from database
         $req = $connexion->prepare("INSERT INTO `users`(`nom`, `postnom`, `prenom`, `telephone`, `foction`, `profil`, `pwd`, `mail`, `statut`) VALUES  (?,?,?,?,?,?,?,?,?)");
-        $resultat = $req->execute([$nom, $postnom, $prenom, $telephone, $fonction, $newimage, $pwd, $mail, $statut]);
+        $resultat = $req->execute([$nom, $postnom, $prenom, $telephone, $fonction, $newimage, $passwordhacher, $mail, $statut]);
         if ($resultat == true) {
           $_SESSION['msg'] = "Enregistrement reussi !";
           header("location:../../views/user.php");

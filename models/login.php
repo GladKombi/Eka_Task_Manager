@@ -1,8 +1,26 @@
 <?php
 include('../connexion/connexion.php');
+
+function isPasswordValid($password, $storedPassword) {
+    if ($password === '' || $storedPassword === '') {
+        return false;
+    }
+
+    if (password_verify($password, $storedPassword)) {
+        return true;
+    }
+
+    $info = password_get_info($storedPassword);
+    if ($info['algo'] === 0 && $password === $storedPassword) {
+        return true;
+    }
+
+    return false;
+}
+
 if (isset($_POST['connect'])) {
-    $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
+    $username = trim(htmlspecialchars($_POST['username']));
+    $password = trim(htmlspecialchars($_POST['password']));
     # Ferification des champs
     if (isset($_SESSION['User']) && !empty($_SESSION['User'])) {
         if ($_SESSION['User'] === "Admin" || $_SESSION['User'] === "ceo") {
@@ -11,9 +29,15 @@ if (isset($_POST['connect'])) {
             $getUserAdmin = $connexion->prepare("SELECT * FROM `users` WHERE mail=? AND users.statut=? AND users.foction=?");
             $getUserAdmin->execute(array($username, $statut, $fonction));
             if ($_identifiant = $getUserAdmin->fetch()) {
-                $pwd = "";
                 $pwd = $_identifiant['pwd'];
-                if ($pwd == $password) {
+                $isValid = isPasswordValid($password, $pwd);
+                $storedInfo = password_get_info($pwd);
+                if ($isValid && $storedInfo['algo'] === 0 && $password === $pwd) {
+                    $pwd = password_hash($password, PASSWORD_DEFAULT);
+                    $updateHash = $connexion->prepare("UPDATE `users` SET pwd=? WHERE id=?");
+                    $updateHash->execute([$pwd, $_identifiant['id']]);
+                }
+                if ($isValid) {
                     $_SESSION['msg'] = "";
                     $_SESSION['fonction'] = $_identifiant['foction'];
                     $_SESSION['iduser'] = $_identifiant['id'];
@@ -23,7 +47,7 @@ if (isset($_POST['connect'])) {
                     $_SESSION['noms'] = $_identifiant['nom'] . ' ' . $_identifiant['postnom'];
                     $_SESSION['nom'] = $_identifiant['nom'];
                     $_SESSION['postnom'] = $_identifiant['postnom'];
-                    $_SESSION['pwd'] = $_identifiant['pwd'];
+                    $_SESSION['pwd'] = $pwd;
                     header("location:../views/index.php");
                 } else {
                     $_SESSION['msg'] = "username or password incorrect ";
@@ -39,9 +63,15 @@ if (isset($_POST['connect'])) {
             $req = $connexion->prepare("SELECT `agents`.*, departement.denomination AS role FROM `agents`, departement WHERE mail=? AND agents.statut=? AND agents.fonction=departement.id;");
             $req->execute(array($username, $statut));
             if ($_identifiant = $req->fetch()) {
-                $pwd = "";
                 $pwd = $_identifiant['pwd'];
-                if ($pwd == $password) {
+                $isValid = isPasswordValid($password, $pwd);
+                $storedInfo = password_get_info($pwd);
+                if ($isValid && $storedInfo['algo'] === 0 && $password === $pwd) {
+                    $pwd = password_hash($password, PASSWORD_DEFAULT);
+                    $updateHash = $connexion->prepare("UPDATE `agents` SET pwd=? WHERE id=?");
+                    $updateHash->execute([$pwd, $_identifiant['id']]);
+                }
+                if ($isValid) {
                     $_SESSION['msg'] = "";
                     $_SESSION['fonction'] = $_identifiant['role'];
                     $_SESSION['iduser'] = $_identifiant['id'];
@@ -53,7 +83,7 @@ if (isset($_POST['connect'])) {
                     $_SESSION['noms'] = $_identifiant['nom'] . ' ' . $_identifiant['postnom'];
                     $_SESSION['nom'] = $_identifiant['nom'];
                     $_SESSION['postnom'] = $_identifiant['postnom'];
-                    $_SESSION['pwd'] = $_identifiant['pwd'];
+                    $_SESSION['pwd'] = $pwd;
                     header("location:../views/horaire.php");
                 } else {
                     $_SESSION['msg'] = "username or password incorrect";

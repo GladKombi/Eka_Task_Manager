@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2025 at 06:07 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Aug 10, 2026 at 08:08 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,7 +37,7 @@ CREATE TABLE `agents` (
   `adresse` varchar(100) NOT NULL,
   `fonction` int(11) NOT NULL,
   `telephoneReferant` varchar(50) NOT NULL,
-  `pwd` varchar(50) NOT NULL,
+  `pwd` varchar(255) NOT NULL,
   `mail` text NOT NULL,
   `profil` text NOT NULL,
   `statut` int(11) NOT NULL
@@ -49,11 +49,13 @@ CREATE TABLE `agents` (
 
 INSERT INTO `agents` (`id`, `nom`, `postnom`, `prenom`, `genre`, `telephone`, `adresse`, `fonction`, `telephoneReferant`, `pwd`, `mail`, `profil`, `statut`) VALUES
 (1, 'Glad', 'Muvunga', 'Rylah', 'Masculin', '09876', 'Kambali', 1, '087654', '1234', '', 'G_Shop6760a4d4bb80c.jpg', 0),
-(2, 'Eloge', 'Muyisa', 'Mumbere', 'Masculin', '0988766544', 'Kambali', 2, '009887', '1234', '', 'Eka_6761c4e239015.jpg', 0),
+(2, 'Eloge', 'Muyisa', 'Mumbere', 'Masculin', '0988766544', 'Kambali', 2, '009887', '1234', 'muyisaeloge@gmail.com', 'Eka_6761c4e239015.jpg', 0),
 (3, 'Bob', 'Comando', 'Zic_Stars', 'Masculin', '0886764', 'kitulu', 2, '0878564', '1234', '', 'Eka_6761c79827016.jpg', 0),
 (4, 'Thanks', 'malikewa', 'Natasha', 'Feminin', '09876554', 'Kitulu', 1, '09876', '1234', '', 'Eka_6761cc7394890.jpg', 0),
-(5, 'anelka', 'vutsumbire', 'Amina', 'Masculin', '09876543', 'vubange', 1, '09877665', '1234', 'anelka@gmail.com', 'Eka_6799600c04b73.jpg', 0),
-(6, 'FXFFG', 'FCXGF', 'CCFC', '', '0990179128', 'CFCFGCC', 0, '', '1234', '', '', 0);
+(5, 'anelka', 'vutsumbire', 'Amina', 'Masculin', '09876543', 'vubange', 1, '09877665', '$2y$10$8EHKJgIEB5X/gh80nj.xOexRg.jeEcDbXQNEztTyXeX', 'anelka@gmail.com', 'Eka_6799600c04b73.jpg', 0),
+(6, 'FXFFG', 'FCXGF', 'CCFC', '', '0990179128', 'CFCFGCC', 0, '', '1234', '', '', 0),
+(7, 'KAMBALE', 'TANAS', 'CHARLES', 'Masculin', '0990345445', 'KALIMBUTE', 2, '0990567623', '@TANS', 'tanas@gmail.com', 'Eka_6a7234c62a893.jpeg', 0),
+(8, 'MUMBERE', 'HURUMA', 'DAVID', 'Masculin', '0989765654', 'VULAMBA', 2, '09876565436', '$2y$10$hRjfKU8tldcUJ2wmbmvap.vonkeHR5AfwyfUlB8e6IV', 'mhd@gmail.com', 'Eka_6a7376de6f5cc.jpeg', 0);
 
 -- --------------------------------------------------------
 
@@ -213,12 +215,13 @@ CREATE TABLE `participation` (
 
 INSERT INTO `participation` (`id`, `agent`, `terrain`, `statut`) VALUES
 (1, 1, 1, 0),
-(2, 3, 1, 0),
+(2, 3, 1, 1),
 (3, 3, 2, 0),
 (4, 4, 2, 0),
 (5, 1, 2, 0),
 (6, 3, 3, 0),
-(7, 4, 3, 0);
+(7, 4, 3, 0),
+(8, 4, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -284,7 +287,7 @@ CREATE TABLE `users` (
   `telephone` varchar(50) NOT NULL,
   `foction` varchar(50) NOT NULL,
   `profil` varchar(50) NOT NULL,
-  `pwd` varchar(50) NOT NULL,
+  `pwd` varchar(255) NOT NULL,
   `mail` varchar(100) NOT NULL,
   `statut` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -294,8 +297,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nom`, `postnom`, `prenom`, `telephone`, `foction`, `profil`, `pwd`, `mail`, `statut`) VALUES
-(1, 'Kombi', 'Ryllah', 'Glad', '098765', 'ceo', 'Eka_67ad0ac35d444.jpg', '1234', 'CEOGlad@Eka.com', 0),
-(2, 'Kamala', 'albert', 'alblack', '0987654', 'Admin', 'Eka_67ad2a29a3004.jpg', '1234', 'Adminalblack@Eka.com', 0);
+(1, 'Kombi', 'Ryllah', 'Glad', '098765', 'ceo', 'Eka_67ad0ac35d444.jpg', '$2y$10$nxM6kNvF1.NAd2fb/bpKC.DrRq4ghklp.ERKZqGC2kw', 'CEOGlad@Eka.com', 0),
+(2, 'Kamala', 'albert', 'alblack', '0987654', 'Admin', 'Eka_67ad2a29a3004.jpg', '$2y$10$zgyHB67elzk2ntRvHy3KJuM451PMye0Ob7sOkE5dy6Y', 'Adminalblack@Eka.com', 0),
+(3, 'ELOGE', 'MUYISA', 'MUMBERE', '0990179128', 'Admin', 'Eka_6a74cbfdc254f.jpeg', '$2y$10$PAQQaidERCYfZKApdHXoTe08mABRAnipEEmlEZYKyFX', 'AdminMUMBERE@Eka.com', 0);
 
 --
 -- Indexes for dumped tables
@@ -375,7 +379,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `agents`
 --
 ALTER TABLE `agents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `categorie`
@@ -417,7 +421,7 @@ ALTER TABLE `partenaire`
 -- AUTO_INCREMENT for table `participation`
 --
 ALTER TABLE `participation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `post_production`
@@ -435,7 +439,7 @@ ALTER TABLE `terrain`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
