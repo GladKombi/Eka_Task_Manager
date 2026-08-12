@@ -215,6 +215,18 @@ if (!isset($_SESSION['iduser']) || empty($_SESSION['iduser'])) {
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="post-Production.php">
                     <i class="bi bi-person-walking text-dark"></i>
+                    <span>Post-Production</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link bg-transparent text-dark " href="presence.php">
+                    <i class="bi bi-clock-history text-dark"></i>
+                    <span>Présence</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link bg-transparent text-dark " href="post-Production.php">
+                    <i class="bi bi-person-walking text-dark"></i>
                     <span>Horaire</span>
                 </a>
             </li><!-- End Dashboard Nav -->
