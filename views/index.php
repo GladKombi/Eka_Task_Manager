@@ -195,7 +195,7 @@ require_once('../models/select/select-Home.php');
                         </div><!-- End Revenue Card -->
 
                         <!-- Materiels Card -->
-                        <div class="col-xxl-4 col-xl-12">
+                        <div class="col-xxl-5 col-xl-12">
 
                             <div class="card info-card customers-card">
                                 <div class="card-body">

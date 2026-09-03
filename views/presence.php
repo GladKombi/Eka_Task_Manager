@@ -75,6 +75,7 @@ $isSunday = (date('N', strtotime($today_for_check)) == 7);
                                 <div class="alert alert-info">Vous avez signalé une absence aujourd'hui.</div>
                         <?php
                             } else { ?>
+                                <div class="alert alert-warning">Vous n'avez pas encore enregistré votre présence aujourd'hui. Vous pouvez la signaler ou déclarer une absence.</div>
                                 <div class="d-grid gap-2">
                                     <button id="show-form-btn" class="btn btn-dark">Enregistrer ma présence</button>
                                     <button id="show-absence-btn" class="btn btn-outline-danger">Signaler une absence</button>
@@ -87,17 +88,17 @@ $isSunday = (date('N', strtotime($today_for_check)) == 7);
                         <div id="presence-form" style="display:none;">
                             <form action="../models/add/add-presence-post.php" method="POST">
                                 <div class="mb-3">
-                                    <label class="form-label">Date</label>
-                                    <input type="text" class="form-control" value="<?= date('d/m/Y') ?>" disabled>
+                                    <label class="form-label">Date de présence</label>
+                                    <input type="date" name="date" id="presence-date" class="form-control" value="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d') ?>" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Jour</label>
-                                    <input type="text" class="form-control" value="<?= jourFrancais(date('Y-m-d')) ?>" disabled>
+                                    <input type="text" class="form-control" id="presence-day" value="<?= jourFrancais(date('Y-m-d')) ?>" disabled>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Heure</label>
                                     <input type="time" name="heure" class="form-control" value="<?= date('H:i') ?>" required>
-                                    <div class="form-text">Vous pouvez personnaliser l'heure avant de valider.</div>
+                                    <div class="form-text">Vous pouvez personnaliser la date et l'heure si vous avez oublié de pointer.</div>
                                 </div>
 
                                 <button type="submit" name="register_presence" class="btn btn-dark w-100">Confirmer l'enregistrement</button>
@@ -190,6 +191,30 @@ $isSunday = (date('N', strtotime($today_for_check)) == 7);
 
             toggleElement(showFormBtn, presenceForm);
             toggleElement(showAbsenceBtn, absenceForm);
+
+            var presenceDate = document.getElementById('presence-date');
+            var presenceDay = document.getElementById('presence-day');
+
+            function dateToFrenchDay(dateString) {
+                var days = {
+                    'Monday': 'Lundi',
+                    'Tuesday': 'Mardi',
+                    'Wednesday': 'Mercredi',
+                    'Thursday': 'Jeudi',
+                    'Friday': 'Vendredi',
+                    'Saturday': 'Samedi',
+                    'Sunday': 'Dimanche'
+                };
+                var date = new Date(dateString + 'T00:00:00');
+                var dayName = date.toLocaleDateString('en-US', { weekday: 'long' });
+                return days[dayName] || dayName;
+            }
+
+            if (presenceDate && presenceDay) {
+                presenceDate.addEventListener('change', function () {
+                    presenceDay.value = dateToFrenchDay(presenceDate.value);
+                });
+            }
         });
     </script>
 

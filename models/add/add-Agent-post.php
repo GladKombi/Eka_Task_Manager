@@ -45,6 +45,15 @@ if (isset($_POST['valider'])) {
         $req = $connexion->prepare("INSERT INTO `agents`(`nom`, `postnom`, `prenom`, `genre`, `telephone`, `adresse`, `fonction`, `telephoneReferant`, `pwd`,`mail`, `profil`, `statut`) VALUES  (?,?,?,?,?,?,?,?,?,?,?,?)");
         $resultat = $req->execute([$nom, $postnom, $prenom, $genre, $telephone, $adresse, $Fonction, $telephoneParent, $passwordhacher, $mail, $newimage, $statut]);
         if ($resultat == true) {
+          // Récupérer l'ID de l'agent inséré
+          $agentId = $connexion->lastInsertId();
+          // Si des rôles ont été sélectionnés, les insérer dans la table de liaison
+          if (isset($_POST['roles']) && is_array($_POST['roles'])) {
+            $insertRole = $connexion->prepare("INSERT IGNORE INTO agent_roles (agent_id, role_id) VALUES (?, ?)");
+            foreach ($_POST['roles'] as $r) {
+              $insertRole->execute([$agentId, intval($r)]);
+            }
+          }
           $_SESSION['msg'] = "Enregistrement reussi !";
           header("location:../../views/agent.php");
         } else {

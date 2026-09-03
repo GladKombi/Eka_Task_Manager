@@ -80,6 +80,7 @@ require_once('../models/select/select-User.php');
                                         <option value="" desabled>Choisir une fonction</option>
                                         <option value="ceo">ceo</option>
                                         <option value="Admin">Admin</option>
+                                        <option value="Admin">Dir_Op</option>
                                     <?php
                                     }
                                     ?>
@@ -145,7 +146,7 @@ require_once('../models/select/select-User.php');
                             <tr>
                                 <th scope="row"><?= $n ?></th>
                                 <td><?= $user["nom"] . " " . $user["postnom"] . " " . $user["prenom"]  ?></td>
-                                <td><?= $user["telephone"] ?></td>
+                                <td><?= $user["foction"] ?></td>
                                 <td><?= $user["telephone"] ?></td>
                                 <td><img src="../assets/img/profiles/<?= $user["profil"] ?>" alt="" class="rounded-circle mt-2" width="65px" height="60px"></td>
                                 <td>

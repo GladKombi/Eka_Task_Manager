@@ -8,9 +8,17 @@ if (!isset($_SESSION['iduser']) || empty($_SESSION['iduser'])) {
 
 if (isset($_POST['register_presence'])) {
     $agent = $_SESSION['iduser'];
-    $date = date('Y-m-d');
+    $dateInput = trim($_POST['date'] ?? '');
     $heureInput = trim($_POST['heure'] ?? '');
     $statut = 0;
+
+    $date = date('Y-m-d');
+    if ($dateInput !== '') {
+        $parsedDate = DateTime::createFromFormat('Y-m-d', $dateInput);
+        if ($parsedDate && $parsedDate->format('Y-m-d') === $dateInput) {
+            $date = $parsedDate->format('Y-m-d');
+        }
+    }
 
     $heure = date('H:i:s');
     if ($heureInput !== '') {

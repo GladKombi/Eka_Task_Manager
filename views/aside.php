@@ -78,22 +78,22 @@ if (!isset($_SESSION['iduser']) || empty($_SESSION['iduser'])) {
         ?>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Flux Financiers</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-wallet2"></i><span>Flux Financiers</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
                         <a href="entree.php">
-                            <i class="bi bi-circle"></i><span>Entrées Caisses</span>
+                            <i class="bi bi-arrow-down-circle"></i><span>Entrées Caisses</span>
                         </a>
                     </li>
                     <li>
                         <a href="sortie.php">
-                            <i class="bi bi-circle"></i><span>Sortie Caisses</span>
+                            <i class="bi bi-arrow-up-circle"></i><span>Sortie Caisses</span>
                         </a>
                     </li>
                     <li>
                         <a href="cloture.php">
-                            <i class="bi bi-circle"></i><span>Clotures</span>
+                            <i class="bi bi-lock"></i><span>Clotures</span>
                         </a>
                     </li>
 
@@ -101,43 +101,43 @@ if (!isset($_SESSION['iduser']) || empty($_SESSION['iduser'])) {
             </li><!-- End Components Nav -->
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="materiels-Details.php">
-                    <i class="bi bi-house-fill text-dark"></i>
+                    <i class="bi bi-hdd-stack text-dark"></i>
                     <span>Materiels</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="departement.php">
-                    <i class="bi bi-house-fill text-dark"></i>
+                    <i class="bi bi-building text-dark"></i>
                     <span>Département</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="partenaire.php">
-                    <i class="bi bi-house-fill text-dark"></i>
+                    <i class="bi bi-people text-dark"></i>
                     <span>Partenaires</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="agent.php">
-                    <i class="bi bi-person-walking text-dark"></i>
+                    <i class="bi bi-person-badge text-dark"></i>
                     <span>Agents</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="disk.php">
-                    <i class="bi bi-person-walking text-dark"></i>
+                    <i class="bi bi-hdd-stack text-dark"></i>
                     <span>Disk de stackages</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="terrain.php">
-                    <i class="bi bi-person-walking text-dark"></i>
+                    <i class="bi bi-geo-alt text-dark"></i>
                     <span>Terrain</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="post-Production.php">
-                    <i class="bi bi-person-walking text-dark"></i>
+                    <i class="bi bi-camera-reels text-dark"></i>
                     <span>Post-Production</span>
                 </a>
             </li><!-- End Dashboard Nav -->
@@ -146,33 +146,33 @@ if (!isset($_SESSION['iduser']) || empty($_SESSION['iduser'])) {
         ?>
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="agent.php">
-                    <i class="bi bi-person-walking text-dark"></i>
+                    <i class="bi bi-person-badge text-dark"></i>
                     <span>Agents</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Rapports</span><i class="bi bi-chevron-down ms-auto"></i>
+                <a class="nav-link collapsed" data-bs-target="#rapports-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-journal-text"></i><span>Rapports</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="rapports-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
                         <a href="#">
-                            <i class="bi bi-circle"></i><span>Liste des Agents</span>
+                            <i class="bi bi-list-task"></i><span>Liste des Agents</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="bi bi-circle"></i><span>Liste des partenaires</span>
+                            <i class="bi bi-people"></i><span>Liste des partenaires</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="bi bi-circle"></i><span>Liste des terrains</span>
+                            <i class="bi bi-geo-alt"></i><span>Liste des terrains</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="bi bi-circle"></i><span>Liste des Productions</span>
+                            <i class="bi bi-bar-chart-line"></i><span>Liste des Productions</span>
                         </a>
                     </li>
 
@@ -180,25 +180,25 @@ if (!isset($_SESSION['iduser']) || empty($_SESSION['iduser'])) {
             </li><!-- End Components Nav -->
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="departement.php">
-                    <i class="bi bi-house-fill text-dark"></i>
+                    <i class="bi bi-building text-dark"></i>
                     <span>Département</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="partenaire.php">
-                    <i class="bi bi-house-fill text-dark"></i>
+                    <i class="bi bi-people text-dark"></i>
                     <span>Partenaires</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="terrain.php">
-                    <i class="bi bi-person-walking text-dark"></i>
+                    <i class="bi bi-geo-alt text-dark"></i>
                     <span>Terrain</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="user.php">
-                    <i class="bi bi-people-fill text-dark"></i>
+                    <i class="bi bi-person-lines-fill text-dark"></i>
                     <span>Utilisateur</span>
                 </a>
             </li> <!--End Dashboard Nav -->
@@ -208,28 +208,23 @@ if (!isset($_SESSION['iduser']) || empty($_SESSION['iduser'])) {
         ?>
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="post-Production.php">
-                    <i class="bi bi-person-walking text-dark"></i>
+                    <i class="bi bi-camera-reels text-dark"></i>
                     <span>Post-Production</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
-                <a class="nav-link bg-transparent text-dark " href="post-Production.php">
-                    <i class="bi bi-person-walking text-dark"></i>
-                    <span>Post-Production</span>
+                <a class="nav-link bg-transparent text-dark " href="horaire.php">
+                    <i class="bi bi-calendar-check text-dark"></i>
+                    <span>Horaire</span>
                 </a>
-            </li><!-- End Dashboard Nav -->
+            </li>
             <li class="nav-item">
                 <a class="nav-link bg-transparent text-dark " href="presence.php">
                     <i class="bi bi-clock-history text-dark"></i>
                     <span>Présence</span>
                 </a>
             </li><!-- End Dashboard Nav -->
-            <li class="nav-item">
-                <a class="nav-link bg-transparent text-dark " href="post-Production.php">
-                    <i class="bi bi-person-walking text-dark"></i>
-                    <span>Horaire</span>
-                </a>
-            </li><!-- End Dashboard Nav -->
+            <!-- End Dashboard Nav -->
 
         <?php
         }

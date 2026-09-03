@@ -122,6 +122,25 @@ require_once('../models/select/select-Agent.php');
                                 </select>
                             </div>
 
+                            <div class="col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                                <label for="">Rôles <span class="text-danger">*</span></label>
+                                <select required id="roles" name="roles[]" class="form-control select2" multiple>
+                                    <?php
+                                    // Affiche les rôles depuis la base
+                                    while ($role = $getRoles->fetch()) {
+                                        $selected = '';
+                                        if (isset($assignedRoles) && in_array($role['id_role'], $assignedRoles)) {
+                                            $selected = 'selected';
+                                        }
+                                    ?>
+                                        <option value="<?= $role['id_role'] ?>" <?= $selected ?>><?= $role['nom_role'] ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                                <small class="text-muted">Maintenez Ctrl (ou Cmd) pour sélectionner plusieurs rôles.</small>
+                            </div>
+
                             <?php if (isset($_GET['idAgent'])) {
                             ?>
                                 <div class="col-xl-6 col-lg-6 col-md-6 mt-4 col-sm-6 p-3 ">
@@ -194,7 +213,7 @@ require_once('../models/select/select-Agent.php');
                                                 <a href="agent.php?NewAgent&idAgent=<?= $Agent["id"] ?>" class="btn btn-dark btn-sm mb-2">
                                                     <i class="bi bi-pencil-square"></i>
                                                 </a>
-                                                <a href="agent.php?idSupAgent=<?= $Agent["id"] ?>" class="btn btn-danger btn-sm mb-2">
+                                                <a onclick="return confirm('Voulez-vous vraiment supprimer cet agent ?')" href="../models/delete/delete-Agent.php?idSupAgent=<?= $Agent["id"] ?>" class="btn btn-danger btn-sm mb-2">
                                                     <i class="bi bi-trash3-fill"></i>
                                                 </a>
                                             </td>

@@ -27,6 +27,16 @@ if (isset($_POST['valider']) && !empty($_GET['idAgent'])) {
             $req = $connexion->prepare("UPDATE `agents` SET `nom`=?,`postnom`=?,`prenom`=?,`genre`=?,`telephone`=?,`adresse`=?,`fonction`=?,`telephoneReferant`=?,`statut`=? WHERE id=?");
             $resultat = $req->execute([$nom, $postnom, $prenom, $genre, $telephone, $adresse, $Fonction, $telephoneParent, $statut, $id]);
             if ($resultat == true) {
+                // Mettre à jour les rôles si fournis
+                if (isset($_POST['roles']) && is_array($_POST['roles'])) {
+                    $del = $connexion->prepare("DELETE FROM agent_roles WHERE agent_id = ?");
+                    $del->execute([$id]);
+                    $ins = $connexion->prepare("INSERT IGNORE INTO agent_roles (agent_id, role_id) VALUES (?, ?)");
+                    foreach ($_POST['roles'] as $r) {
+                        $ins->execute([$id, intval($r)]);
+                    }
+                }
+
                 $_SESSION['msg'] = "Modification reussi !";
                 header("location:../../views/agent.php");
             } else {
